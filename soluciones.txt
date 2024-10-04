@@ -1,0 +1,40 @@
+276393
+
+# Teoría
+
+1. B
+
+2. A
+
+3. En la primera forma normal (1NF)
+
+4.Hay que destacar que ambos son utilizados para filtrar, el WHERE lo usamos para filtrar sobre una columna 
+y en el caso del HAVING es para filtrar sobre funciones de agregación junto al GROUP BY 
+
+5. C 
+
+# Práctica
+
+1.
+SELECT nombre_materia AS materia, AVG(calificacion) AS promedio_calificacion
+FROM calificaciones
+WHERE calificacion IS NOT NULL
+GROUP BY nombre_materia
+ORDER BY 2 DESC;
+
+2.
+SELECT DISTINCT a.nombre, a.apellido
+FROM alumnos AS a
+LEFT JOIN calificaciones AS c 
+ON a.expediente = c.expediente 
+WHERE c.calificacion IS NOT NULL
+ORDER BY 2;
+
+3.
+SELECT a.nombre, a.apellido, MAX(c.calificacion) AS calificacion
+FROM alumnos AS a
+LEFT JOIN calificaciones AS c 
+ON a.expediente = c.expediente 
+WHERE c.calificacion IS NOT NULL
+GROUP BY a.nombre, a.apellido
+ORDER BY 3 DESC;
